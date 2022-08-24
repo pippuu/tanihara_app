@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tanihara_app/calculatorscreen.dart';
 import 'package:tanihara_app/historyscreen.dart';
 import 'package:tanihara_app/measurementscreen.dart';
 import 'package:tanihara_app/model/plant.dart';
@@ -165,21 +166,30 @@ class _HomeScreenState extends State<HomeScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: SizedBox(
-                          width: 134,
-                          height: 71,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Icon(
-                                    Icons.calculate,
-                                    size: 30,
-                                    color: Color(0xFF06AA50),
-                                  ),
-                                  Text("Calculator"),
-                                ]),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CalculatorScreen()));
+                          },
+                          borderRadius: BorderRadius.circular(15),
+                          child: SizedBox(
+                            width: 134,
+                            height: 71,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Icon(
+                                      Icons.calculate,
+                                      size: 30,
+                                      color: Color(0xFF06AA50),
+                                    ),
+                                    Text("Calculator"),
+                                  ]),
+                            ),
                           ),
                         ),
                       ),
