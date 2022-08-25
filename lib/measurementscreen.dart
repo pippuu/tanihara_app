@@ -58,14 +58,15 @@ class _MeasurementScreenState extends State<MeasurementScreen> {
               const SizedBox(height: 12),
               Center(
                 child: Card(
+                  semanticContainer: true,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
-                  clipBehavior: Clip.hardEdge,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Container(
-                    height: 139,
-                    width: 309,
+                  child: Image(
+                    fit: BoxFit.fill,
+                    image: AssetImage("images/minimaps.png"),
                   ),
                 ),
               ),
