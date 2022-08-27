@@ -12,12 +12,26 @@ class PredictScreen extends StatefulWidget {
 
 class _PredictScreenState extends State<PredictScreen> {
   var weekList = ["This Week", "Next Week"];
-  var dayList = ["Tuesday, Aug 16", "Wednesday, Aug 17"];
+  var dayList = [
+    "Tuesday, Aug 16",
+    "Wednesday, Aug 17",
+    "Monday, Aug 22",
+    "Tuesday, Aug 23"
+  ];
+  var reminderList = ["Friday, Aug 19", "Saturday, Aug 27"];
   var ppmList = ["293,9 Ppm", "283,9 Ppm"];
+  var graphList = [
+    "images/vector1_1.png",
+    "images/vector1_2.png",
+    "images/vector2_1.png",
+    "images/vector2_2.png"
+  ];
 
   var primaryIdx = 0;
   var secondaryIdx = 0;
   var thirdIdx = 0;
+  var forthIdx = 0;
+  var fifthIdx = 0;
 
   var dropdownVal = datasNames[0];
 
@@ -60,6 +74,11 @@ class _PredictScreenState extends State<PredictScreen> {
                             if (primaryIdx != 0) {
                               setState(() {
                                 primaryIdx -= 1;
+                                secondaryIdx -= 2;
+                                thirdIdx -= 1;
+                                forthIdx -= 1;
+                                graphList[0] = "images/vector1_1.png";
+                                graphList[1] = "images/vector1_2.png";
                               });
                             }
                           },
@@ -75,6 +94,11 @@ class _PredictScreenState extends State<PredictScreen> {
                             if (primaryIdx != weekList.length - 1) {
                               setState(() {
                                 primaryIdx += 1;
+                                secondaryIdx += 2;
+                                thirdIdx += 1;
+                                forthIdx += 1;
+                                graphList[0] = "images/vector2_1.png";
+                                graphList[1] = "images/vector2_2.png";
                               });
                             }
                           },
@@ -142,7 +166,7 @@ class _PredictScreenState extends State<PredictScreen> {
                                 top: 52,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text(
                                       "CALCULATION",
                                       style: TextStyle(
@@ -150,7 +174,7 @@ class _PredictScreenState extends State<PredictScreen> {
                                           fontSize: 10),
                                     ),
                                     Text(
-                                      "293,9 Ppm",
+                                      ppmList[thirdIdx],
                                       style: TextStyle(
                                           color: Color(0xFF06AA50),
                                           fontSize: 30,
@@ -158,15 +182,12 @@ class _PredictScreenState extends State<PredictScreen> {
                                     ),
                                   ],
                                 )),
-                            const Positioned(
+                            Positioned(
                                 top: 120,
-                                child: const Image(
-                                    image: AssetImage("images/vector1_1.png"))),
-                            const Positioned(
+                                child: Image(image: AssetImage(graphList[0]))),
+                            Positioned(
                                 top: 120,
-                                child: const Image(
-                                    image: const AssetImage(
-                                        "images/vector1_2.png"))),
+                                child: Image(image: AssetImage(graphList[1]))),
                           ],
                         ),
                       ),
@@ -196,10 +217,18 @@ class _PredictScreenState extends State<PredictScreen> {
                               IconButton(
                                 icon: const Icon(Icons.arrow_back_ios),
                                 onPressed: () {
-                                  if (secondaryIdx != 0) {
-                                    setState(() {
-                                      secondaryIdx -= 1;
-                                    });
+                                  if (weekList[primaryIdx] == "This Week") {
+                                    if (secondaryIdx != 0) {
+                                      setState(() {
+                                        secondaryIdx -= 1;
+                                      });
+                                    }
+                                  } else {
+                                    if (secondaryIdx != 2) {
+                                      setState(() {
+                                        secondaryIdx -= 1;
+                                      });
+                                    }
                                   }
                                 },
                               ),
@@ -211,10 +240,18 @@ class _PredictScreenState extends State<PredictScreen> {
                               IconButton(
                                 icon: const Icon(Icons.arrow_forward_ios),
                                 onPressed: () {
-                                  if (secondaryIdx != dayList.length - 1) {
-                                    setState(() {
-                                      secondaryIdx += 1;
-                                    });
+                                  if (weekList[primaryIdx] == "This Week") {
+                                    if (secondaryIdx != 1) {
+                                      setState(() {
+                                        secondaryIdx += 1;
+                                      });
+                                    }
+                                  } else {
+                                    if (secondaryIdx != 3) {
+                                      setState(() {
+                                        secondaryIdx += 1;
+                                      });
+                                    }
                                   }
                                 },
                               ),
@@ -246,7 +283,7 @@ class _PredictScreenState extends State<PredictScreen> {
                                 fontSize: 15, color: Color(0xFF06AA50)),
                           ),
                           Text(
-                            "Friday, Aug 19",
+                            reminderList[forthIdx],
                             style: TextStyle(
                                 fontSize: 15,
                                 color: Color(0xFF06AA50),
